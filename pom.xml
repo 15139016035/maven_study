@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--
+ ** <modelVersion>
+            和Pom版本相关，pom.xml 文件不是一个随意的 XML 文件，它有一套严格的语法和结构规范。这套规范就叫做“项目对象模型”。
+            项目对象模型： 它定义了哪些标签是合法的，这些标签应该如何嵌套，以及它们的含义。
+            modelVersion：  这个标签告诉 Maven 解析器（包括 mvn 命令和你的 IDE 如 IntelliJ/Eclipse）应该使用哪个版本的 POM 规范来读取和理解你当前的 pom.xml 文件；
+                            一个声明：警告！接下来的这个 XML 文件，请务必使用 4.0.0 版本的语法规则来解析
+   -->
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <!--唯一坐标-->
+    <groupId>com.wuyaohua.maven</groupId>
+    <artifactId>maven_study</artifactId>
+    <version>1.0</version>
+
+
+
+
+    <!--将项目达成什么类型的文件
+ ** <packaging>
+            ● packaging 值为jar （默认值），普通java工程 ，.jar文件
+                ■ 可独立运行的程序，或者是一个工具包或者模块
+            ● packaging 值为war，java的web工程 ，.war文件
+                ■ 无法独立运行的项目，需要部署到web服务器，例如tomcat，jetty，weblogic
+            ● packaging 值为pom，代表不会打包，是一个父工程，只负责依赖管理和聚合；
+
+
+            ● 对这个jar包和war包多说一句
+                ○ 一个普通java工程和一个web工程的区别：web工程比普通java工程多了一个web模块；
+                ○ 这web模块自己手动到项目架构 添加一个web模块
+                ○ 或者 将工程打包方式设置成war包，就有了web模块，那么这个工程就是一个web工程；
+    -->
+    <packaging>pom</packaging>
+    <modules>
+        <module>maven_java</module>
+        <module>maven_web</module>
+        <module>maven_web_plugin</module>
+    </modules>
+
+
+    <!--
+  **<properties>
+        整个项目的全局变量的声明
+    -->
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+</project>
