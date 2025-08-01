@@ -18,6 +18,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>5.9.2</junit.version>
     </properties>
 
 
@@ -28,8 +29,15 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.2</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
+<!--            排除依赖,排除junit中所依赖的 org.opentest4j:opentest4j-->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.opentest4j</groupId>
+                    <artifactId>opentest4j</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
 
@@ -38,8 +46,54 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.38</version>
+            <scope>provided</scope>
         </dependency>
+
+<!--依赖传递终止原则的一种： 配置了optional-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.15</version>
+            <optional>true</optional>
+        </dependency>
+
+
     </dependencies>
+
+
+    <build>
+
+        <!--定制打包的名称-->
+        <finalName>my_package-1.0</finalName>
+
+        <!--设置要打包的资源位置-->
+        <resources>
+            <!--配置一个额外包含某某文件的-->
+            <resource>
+                <!-- 设置资源所在目录-->
+                <directory>src/main/java</directory>
+                <!--  设置要包含的资源  代表资源所在目录下的任意目录下的任意的xml文件-->
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+
+            <!--配置一个要额外排除某某文件的-->
+            <resource>
+                <!-- 指定资源文件的目录 -->
+                <directory>src/main/resources</directory>
+                <!-- 这里是关键：定义要排除的文件列表 -->
+                <excludes>
+                    <!-- 排除所有的.text文件 -->
+                    <exclude>**/*.text</exclude>
+
+                </excludes>
+            </resource>
+        </resources>
+
+
+    </build>
+
 
 
 </project>
