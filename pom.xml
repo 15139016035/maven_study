@@ -15,7 +15,7 @@
     <!--唯一坐标-->
     <groupId>com.wuyaohua.maven</groupId>
     <artifactId>maven_study</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
 
 
 
@@ -39,6 +39,7 @@
         <module>maven_java</module>
         <module>maven_web</module>
         <module>maven_web_plugin</module>
+        <module>maven_parent</module>
     </modules>
 
 
@@ -51,5 +52,31 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+    <!--定义当您执行 mvn deploy 命令时，构建出来的jar/war包，应该被上传到哪个远程仓库。-->
+    <distributionManagement>
+
+        <!-- 这是发布版仓库的配置,构建的jar包名字要带上releases -->
+        <repository>
+            <!--一定要和server中配置的id所匹配-->
+            <id>nexus-mine</id>
+            <name>Nexus Releases</name>
+            <url>http://10.36.9.185:8081/repository/maven-releases/</url>
+        </repository>
+
+
+
+
+
+        <!--   这是快照版仓库的配置,构建的jar包名字要带上snapshot-->
+        <snapshotRepository>
+            <!--            一定要和server中配置的id所匹配-->
+            <id>nexus-mine</id>
+            <name>Nexus Snapshot</name>
+            <!--            要上传的私服仓库中的地址-->
+            <url>http://10.36.9.185:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

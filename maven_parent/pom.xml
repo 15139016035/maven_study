@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.wuyaohua.maven</groupId>
+    <artifactId>maven_parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+<!--父工程必须是一个pom项目，不需要有任何java代码，不需要下载任何依赖
+    且src的目录可以删除了-->
+    <packaging>pom</packaging>
+
+<!--    聚合的标签，-->
+    <modules>
+<!--        module是子工程的路径，不是GAV的值-->
+        <module>maven_son</module>
+    </modules>
+
+
+
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--
+    依赖管理：<dependencyManagement>
+             不使用该标签： 子工程会直接继承父工程声明的所有依赖；
+              使用该标签： 子工程不会直接继承父工程声明的所有依赖，
+                         子工程要手动配置使用父工程的依赖；
+    -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.25</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+
+
+
+
+</project>
